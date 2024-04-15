@@ -20,7 +20,13 @@ const initializeVariables = (data) => {
   data.currentPlayer = "X";
   data.gameOver = false;
 };
-
+const addEventListenerToGameBoard = (data) => {
+  document.querySelectorAll(".box").forEach((box) => {
+    box.addEventListener("click", (event) => {
+      playMove(event.target, data);
+    });
+  });
+};
 const initializGame = (data) => {
   //initialize game vartiables
   initializeVariables(data);
