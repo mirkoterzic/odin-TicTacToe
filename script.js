@@ -39,6 +39,7 @@ const addEventListenerToGameBoard = (data) => {
   });
 };
 const initializGame = (data) => {
+  adjustDom("displayTurn", `${data.player1Name}'s turn`);
   //initialize game vartiables
   initializeVariables(data);
 
@@ -70,6 +71,7 @@ const playMove = (box, data) => {
   }
   //change player
   //change DOM and change data.currentPlayer
+  changerPlayer(data);
 };
 const endConditions = (data) => {
   //win
@@ -106,4 +108,10 @@ const checkWinner = (data) => {
 const adjustDom = (classname, textContent) => {
   const element = document.querySelector(`.${classname}`);
   element.textContent = textContent;
+};
+const changerPlayer = (data) => {
+  data.currentPlayer = data.currentPlayer === "X" ? "O" : "X";
+  let displayTurnText =
+    data.currentPlayer === "X" ? data.player1Name : data.player2Name;
+  adjustDom("displayTurn", `${displayTurnText}'s turn`);
 };
