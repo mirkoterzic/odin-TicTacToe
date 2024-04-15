@@ -66,10 +66,10 @@ const playMove = (box, data) => {
 
   //check and coditions
   if (endConditions(data)) {
-    //adjust domm to reflect conditions
+    return;
   }
-
-  console.log(box, data);
+  //change player
+  //change DOM and change data.currentPlayer
 };
 const endConditions = (data) => {
   //win
@@ -77,8 +77,13 @@ const endConditions = (data) => {
   //game still going
 
   if (checkWinner(data)) {
+    let winTextContent =
+      data.currentPlayer === "X" ? data.player1Name : data.player2Name;
+    adjustDom("displayTurn", winTextContent + " has Won the game");
     return true;
   } else if (data.round === 8) {
+    adjustDom("displayTurn", "DRAW");
+    data.gameOver = true;
     true;
   }
   return false;
@@ -96,4 +101,9 @@ const checkWinner = (data) => {
   });
 
   return result;
+};
+
+const adjustDom = (classname, textContent) => {
+  const element = document.querySelector(`.${classname}`);
+  element.textContent = textContent;
 };
