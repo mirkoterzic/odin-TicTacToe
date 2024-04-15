@@ -10,6 +10,7 @@ const winningConditions = [
 ];
 
 const form = document.querySelector("#myForm");
+const resetGameBtn = document.querySelector("#resetBtn");
 
 form.addEventListener("submit", (event) => {
   //prevent page from refresh
@@ -23,7 +24,7 @@ form.addEventListener("submit", (event) => {
 });
 
 const initializeVariables = (data) => {
-  data.choice = +data.choice;
+  data.choice = 0;
   data.board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   data.player1 = "X";
   data.player2 = "0";
@@ -31,11 +32,23 @@ const initializeVariables = (data) => {
   data.currentPlayer = "X";
   data.gameOver = false;
 };
+
+const resetDom = () => {
+  document.querySelectorAll(".box").forEach((box) => {
+    box.className = "box";
+    box.textContent = "";
+  });
+};
 const addEventListenerToGameBoard = (data) => {
   document.querySelectorAll(".box").forEach((box) => {
     box.addEventListener("click", (event) => {
       playMove(event.target, data);
     });
+  });
+  resetGameBtn.addEventListener("click", () => {
+    initializeVariables(data);
+    resetDom();
+    adjustDom("displayTurn", `${data.player1Name}'s turn`);
   });
 };
 const initializGame = (data) => {
