@@ -1,3 +1,14 @@
+const winningConditions = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [6, 4, 2],
+];
+
 const form = document.querySelector("#myForm");
 
 form.addEventListener("submit", (event) => {
@@ -30,7 +41,7 @@ const addEventListenerToGameBoard = (data) => {
 const initializGame = (data) => {
   //initialize game vartiables
   initializeVariables(data);
-  console.log(data);
+
   //add event listener to gameboard
   addEventListenerToGameBoard(data);
 };
@@ -54,6 +65,10 @@ const playMove = (box, data) => {
   data.round++;
 
   //check and coditions
+  if (endConditions(data)) {
+    //adjust domm to reflect conditions
+  }
 
   console.log(box, data);
 };
+const endConditions = (data) => {};
