@@ -77,6 +77,7 @@ const playMove = (box, data) => {
 
   //increase round number
   data.round++;
+  console.log(box, data);
 
   //check and coditions
   if (endConditions(data)) {
@@ -96,12 +97,13 @@ const endConditions = (data) => {
       data.currentPlayer === "X" ? data.player1Name : data.player2Name;
     adjustDom("displayTurn", winTextContent + " has Won the game");
     return true;
-  } else if (data.round === 8) {
+  } else if (data.round === 9) {
     adjustDom("displayTurn", "DRAW");
     data.gameOver = true;
-    true;
+    return true;
+  } else {
+    return false;
   }
-  return false;
 };
 const checkWinner = (data) => {
   let result = false;
