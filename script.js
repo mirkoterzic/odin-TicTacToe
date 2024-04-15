@@ -71,4 +71,29 @@ const playMove = (box, data) => {
 
   console.log(box, data);
 };
-const endConditions = (data) => {};
+const endConditions = (data) => {
+  //win
+  //tie
+  //game still going
+
+  if (checkWinner(data)) {
+    return true;
+  } else if (data.round === 8) {
+    true;
+  }
+  return false;
+};
+const checkWinner = (data) => {
+  let result = false;
+  winningConditions.forEach((condition) => {
+    if (
+      data.board[condition[0]] === data.board[condition[1]] &&
+      data.board[condition[1]] === data.board[condition[2]]
+    ) {
+      data.gameOver = true;
+      result = true;
+    }
+  });
+
+  return result;
+};
