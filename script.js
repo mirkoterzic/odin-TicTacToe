@@ -32,4 +32,28 @@ const initializGame = (data) => {
   initializeVariables(data);
   console.log(data);
   //add event listener to gameboard
+  addEventListenerToGameBoard(data);
+};
+
+const playMove = (box, data) => {
+  //is game over ? if game over , dont do anything
+  if (data.gameOver || data.round > 8) {
+    return;
+  }
+  //check if game box has letter in
+  if (data.board[box.id] === "X" || data.board[box.id] === "O") {
+    return;
+  }
+  //ajust the DOM for player move, and then check conditions
+
+  data.board[box.id] = data.currentPlayer;
+  box.textContent = data.currentPlayer;
+  box.className = data.currentPlayer === "X" ? "box player1" : "box player2";
+
+  //increase round number
+  data.round++;
+
+  //check and coditions
+
+  console.log(box, data);
 };
