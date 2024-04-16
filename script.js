@@ -77,7 +77,6 @@ const playMove = (box, data) => {
 
   //increase round number
   data.round++;
-  console.log(box, data);
 
   //check and coditions
   if (endConditions(data)) {
